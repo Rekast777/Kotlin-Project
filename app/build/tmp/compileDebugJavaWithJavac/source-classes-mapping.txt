@@ -1,0 +1,6 @@
+com/weatherapp/BuildConfig.java
+ com.weatherapp.BuildConfig
+com/weatherapp/di/DaggerAppComponent.java
+ com.weatherapp.di.DaggerAppComponent
+ com.weatherapp.di.DaggerAppComponent$1
+ com.weatherapp.di.DaggerAppComponent$Builder
