@@ -2,7 +2,14 @@
 package com.weatherapp.di;
 
 import com.weatherapp.activities.MainActivity;
+import com.weatherapp.activities.MainActivity_MembersInjector;
+import com.weatherapp.activities.WeatherViewModel;
+import com.weatherapp.activities.WeatherViewModelFactory;
+import com.weatherapp.network.WeatherService;
 import dagger.internal.DaggerGenerated;
+import dagger.internal.DoubleCheck;
+import dagger.internal.Preconditions;
+import javax.inject.Provider;
 
 @DaggerGenerated
 @SuppressWarnings({
@@ -12,8 +19,11 @@ import dagger.internal.DaggerGenerated;
 public final class DaggerAppComponent implements AppComponent {
   private final DaggerAppComponent appComponent = this;
 
-  private DaggerAppComponent() {
+  private Provider<WeatherService> provideRetrofitProvider;
 
+  private DaggerAppComponent(NetworkModule networkModuleParam) {
+
+    initialize(networkModuleParam);
 
   }
 
@@ -25,16 +35,46 @@ public final class DaggerAppComponent implements AppComponent {
     return new Builder().build();
   }
 
+  private WeatherViewModelFactory weatherViewModelFactory() {
+    return new WeatherViewModelFactory(provideRetrofitProvider.get());
+  }
+
+  private WeatherViewModel weatherViewModel() {
+    return new WeatherViewModel(provideRetrofitProvider.get());
+  }
+
+  @SuppressWarnings("unchecked")
+  private void initialize(final NetworkModule networkModuleParam) {
+    this.provideRetrofitProvider = DoubleCheck.provider(NetworkModule_ProvideRetrofitFactory.create(networkModuleParam));
+  }
+
   @Override
   public void inject(MainActivity activity) {
+    injectMainActivity(activity);
+  }
+
+  private MainActivity injectMainActivity(MainActivity instance) {
+    MainActivity_MembersInjector.injectWeatherViewModelFactory(instance, weatherViewModelFactory());
+    MainActivity_MembersInjector.injectWeatherViewModel(instance, weatherViewModel());
+    return instance;
   }
 
   public static final class Builder {
+    private NetworkModule networkModule;
+
     private Builder() {
     }
 
+    public Builder networkModule(NetworkModule networkModule) {
+      this.networkModule = Preconditions.checkNotNull(networkModule);
+      return this;
+    }
+
     public AppComponent build() {
-      return new DaggerAppComponent();
+      if (networkModule == null) {
+        this.networkModule = new NetworkModule();
+      }
+      return new DaggerAppComponent(networkModule);
     }
   }
 }

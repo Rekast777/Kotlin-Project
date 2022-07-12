@@ -23,7 +23,6 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 
-import androidx.lifecycle.ViewModelProvider
 import com.google.android.gms.location.*
 import com.google.gson.Gson
 import com.karumi.dexter.Dexter
@@ -31,8 +30,9 @@ import com.karumi.dexter.MultiplePermissionsReport
 import com.karumi.dexter.PermissionToken
 import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener
-import com.weatherapp.MyApplication
+
 import com.weatherapp.R
+import com.weatherapp.MyApplication
 import com.weatherapp.models.WeatherResponse
 
 import com.weatherapp.utils.Constants
@@ -50,7 +50,10 @@ import javax.inject.Inject
  */
 class MainActivity : AppCompatActivity() {
 
-    //@Inject
+    @Inject
+    lateinit var  weatherViewModelFactory: WeatherViewModelFactory
+
+    @Inject
     lateinit var weatherViewModel: WeatherViewModel
 
 
@@ -73,48 +76,67 @@ class MainActivity : AppCompatActivity() {
 
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreate(savedInstanceState: Bundle?) {
-
+        (applicationContext as MyApplication).appComponent.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        //weatherViewModel = ViewModelProvider(this).get(WeatherViewModel::class.java)
+        weatherViewModel.isLoading.observe(this, androidx.lifecycle.Observer{
+            Log.i("ISLOADING CALLLLED", "isLoading called $it")
+            if (weatherViewModel.isLoading.value == true){
+                showCustomProgressDialog()
+            }
+            else{
+                hideProgressDialog()
 
-        //WeatherViewModel().YourNonActivityClass(this)
+            }
+        })
+
+        // Here we have converted the model class in to Json String to store it in the SharedPreferences.
+        weatherViewModel.weatherList2.observe(this, androidx.lifecycle.Observer{ weatherList ->
 
 
-        //creates view model
+            for (z in weatherList.weather.indices) {
+                Log.i("NAMEEEEEEEE", weatherList.weather[z].main)
 
-        weatherViewModel = ViewModelProvider(this).get(WeatherViewModel::class.java)
+                tv_main.text = weatherList.weather[z].main
+                tv_main_description.text = weatherList.weather[z].description
+                tv_temp.text =
+                    weatherList.main.temp.toString() // getUnit(application.resources.configuration.locales.toString())
+                tv_humidity.text = weatherList.main.humidity.toString() + " per cent"
+                tv_min.text = weatherList.main.tempMin.toString() + " min"
+                tv_max.text = weatherList.main.tempMax.toString() + " max"
+                tv_speed.text = weatherList.wind.speed.toString()
+                tv_name.text = weatherList.name
+                tv_country.text = weatherList.sys.country
+                tv_sunrise_time.text = unixTime(weatherList.sys.sunrise.toLong())
+                tv_sunset_time.text = unixTime(weatherList.sys.sunset.toLong())
 
-
-        //(application as MyApplication).appComponent.inject(this)
+                // Here we update the main icon
+                when (weatherList.weather[z].icon) {
+                    "01d" -> iv_main.setImageResource(R.drawable.sunny)
+                    "02d" -> iv_main.setImageResource(R.drawable.cloud)
+                    "03d" -> iv_main.setImageResource(R.drawable.cloud)
+                    "04d" -> iv_main.setImageResource(R.drawable.cloud)
+                    "04n" -> iv_main.setImageResource(R.drawable.cloud)
+                    "10d" -> iv_main.setImageResource(R.drawable.rain)
+                    "11d" -> iv_main.setImageResource(R.drawable.storm)
+                    "13d" -> iv_main.setImageResource(R.drawable.snowflake)
+                    "01n" -> iv_main.setImageResource(R.drawable.cloud)
+                    "02n" -> iv_main.setImageResource(R.drawable.cloud)
+                    "03n" -> iv_main.setImageResource(R.drawable.cloud)
+                    "10n" -> iv_main.setImageResource(R.drawable.cloud)
+                    "11n" -> iv_main.setImageResource(R.drawable.rain)
+                    "13n" -> iv_main.setImageResource(R.drawable.snowflake)
+                }
+            }
+        })
         //showCustomProgressDialog()
-
-
-       /*
-       if (it){
-       showprogressdialog()
-       }
-       else{
-       hideprogressdialog
-       }
-       */
-
-        //}
-
         // Initialize the Fused location variable
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
 
-        // TODO (STEP 2: Initialize the SharedPreferences variable.)
-        // START
         // Initialize the SharedPreferences variable
         mSharedPreferences = getSharedPreferences(Constants.PREFERENCE_NAME, Context.MODE_PRIVATE)
-        // END
 
-        // TODO (STEP 7: Call the UI method to populate the data in
-        //  the UI which are already stored in sharedPreferences earlier.
-        //  At first run it will be blank.)
-        // START
-        //setupUI()
-        // END
 
         if (!isLocationEnabled()) {
             Toast.makeText(
@@ -260,153 +282,15 @@ class MainActivity : AppCompatActivity() {
         if (Constants.isNetworkAvailable(this@MainActivity)) {
             weatherViewModel.getWeather()
 
-
-            weatherViewModel.isLoading.observe(this, androidx.lifecycle.Observer{
-                if (weatherViewModel.isLoading.value == true){
-                    showCustomProgressDialog()
-                }
-                else{
-                    hideProgressDialog()
-
-                }
-            })
-
-            // Here we have converted the model class in to Json String to store it in the SharedPreferences.
-            weatherViewModel.weatherList2.observe(this, androidx.lifecycle.Observer{ weatherList ->
-
-
-                for (z in weatherList.weather.indices) {
-                    Log.i("NAMEEEEEEEE", weatherList.weather[z].main)
-
-                    tv_main.text = weatherList.weather[z].main
-                    tv_main_description.text = weatherList.weather[z].description
-                    tv_temp.text =
-                        weatherList.main.temp.toString() // getUnit(application.resources.configuration.locales.toString())
-                    tv_humidity.text = weatherList.main.humidity.toString() + " per cent"
-                    tv_min.text = weatherList.main.tempMin.toString() + " min"
-                    tv_max.text = weatherList.main.tempMax.toString() + " max"
-                    tv_speed.text = weatherList.wind.speed.toString()
-                    tv_name.text = weatherList.name
-                    tv_country.text = weatherList.sys.country
-                    tv_sunrise_time.text = unixTime(weatherList.sys.sunrise.toLong())
-                    tv_sunset_time.text = unixTime(weatherList.sys.sunset.toLong())
-
-                    // Here we update the main icon
-                    when (weatherList.weather[z].icon) {
-                        "01d" -> iv_main.setImageResource(R.drawable.sunny)
-                        "02d" -> iv_main.setImageResource(R.drawable.cloud)
-                        "03d" -> iv_main.setImageResource(R.drawable.cloud)
-                        "04d" -> iv_main.setImageResource(R.drawable.cloud)
-                        "04n" -> iv_main.setImageResource(R.drawable.cloud)
-                        "10d" -> iv_main.setImageResource(R.drawable.rain)
-                        "11d" -> iv_main.setImageResource(R.drawable.storm)
-                        "13d" -> iv_main.setImageResource(R.drawable.snowflake)
-                        "01n" -> iv_main.setImageResource(R.drawable.cloud)
-                        "02n" -> iv_main.setImageResource(R.drawable.cloud)
-                        "03n" -> iv_main.setImageResource(R.drawable.cloud)
-                        "10n" -> iv_main.setImageResource(R.drawable.cloud)
-                        "11n" -> iv_main.setImageResource(R.drawable.rain)
-                        "13n" -> iv_main.setImageResource(R.drawable.snowflake)
-                    }
-                }
-            })
-
-
             val weatherResponseJsonString = Gson().toJson(weatherViewModel.weatherList2.value)
             val test = weatherViewModel.weatherList2.value
-            Log.i("weather list 2", "$test?")
+            Log.i("weather list 2", "weather LIST 2 $test?")
             Log.i("json string", "$weatherResponseJsonString")
             // Save the converted string to shared preferences
             val editor = mSharedPreferences.edit()
             editor.putString(Constants.WEATHER_RESPONSE_DATA, weatherResponseJsonString)
             editor.apply()
-            /**
-             * Add the built-in converter factory first. This prevents overriding its
-             * behavior but also ensures correct behavior when using converters that consume all types.
-             */
-            //val retrofit: Retrofit = Retrofit.Builder()
-                // API base URL.
-               // .baseUrl(Constants.BASE_URL)
-                /** Add converter factory for serialization and deserialization of objects. */
-                /**
-                 * Create an instance using a default {@link Gson} instance for conversion. Encoding to JSON and
-                 * decoding from JSON (when no charset is specified by a header) will use UTF-8.
-                 */
-              //  .addConverterFactory(GsonConverterFactory.create())
-                /** Create the Retrofit instances. */
-              //  .build()
 
-            /**
-             * Here we map the service interface in which we declares the end point and the API type
-             *i.e GET, POST and so on along with the request parameter which are required.
-             */
-            //val service: WeatherService =
-              //  retrofit.create<WeatherService>(WeatherService::class.java)
-
-            /** An invocation of a Retrofit method that sends a request to a web-server and returns a response.
-             * Here we pass the required param in the service
-             */
-           // val listCall: Call<WeatherResponse> = service.getWeather(
-             //  mLatitude, mLongitude, Constants.METRIC_UNIT, Constants.APP_ID
-         //  )
-
-            //showCustomProgressDialog() // Used to show the progress dialog
-
-            // Callback methods are executed using the Retrofit callback executor.
-            /*
-            listCall.enqueue(object : Callback<WeatherResponse> {
-                @RequiresApi(Build.VERSION_CODES.N)
-                @SuppressLint("SetTextI18n")
-                override fun onResponse(response: Response<WeatherResponse>, retrofit: Retrofit) {
-
-                    // Check weather the response is success or not.
-                    if (response.isSuccess) {
-*/
-                      //  hideProgressDialog() // Hides the progress dialog
-/*
-                        /** The de-serialized response body of a successful response. */
-                        val weatherList: WeatherResponse = response.body()
-                        Log.i("Response Result", "$weatherList")
-
-                        // TODO (STEP 4: Here we convert the response object to string and store the string in the SharedPreference.)
-                        // START
-                        // Here we have converted the model class in to Json String to store it in the SharedPreferences.
-
-
-                        val weatherResponseJsonString = Gson().toJson(weatherList)
-                        // Save the converted string to shared preferences
-                        val editor = mSharedPreferences.edit()
-                        editor.putString(Constants.WEATHER_RESPONSE_DATA, weatherResponseJsonString)
-                        editor.apply()
-                        // END
-
-                        // TODO (STEP 5: Remove the weather detail object as we will be getting
-                        //  the object in form of a string in the setup UI method.)
-                        // START
-                        setupUI()
-                        // END
-                    } else {
-                        // If the response is not success then we check the response code.
-                        val sc = response.code()
-                        when (sc) {
-                            400 -> {
-                                Log.e("Error 400", "Bad Request")
-                            }
-                            404 -> {
-                                Log.e("Error 404", "Not Found")
-                            }
-                            else -> {
-                                Log.e("Error", "Generic Error")
-                            }
-                        }
-                    }
-                }
-
-                override fun onFailure(t: Throwable) {
-                    hideProgressDialog() // Hides the progress dialog
-                    Log.e("Errorrrrr", t.message.toString())
-                }
-            })*/
         } else {
             Toast.makeText(
                 this@MainActivity,
@@ -438,66 +322,6 @@ class MainActivity : AppCompatActivity() {
             mProgressDialog!!.dismiss()
         }
     }
-
-    /**
-     * Function is used to set the result in the UI elements.
-     */
-    @RequiresApi(Build.VERSION_CODES.N)
-    private fun setupUI() {
-        // TODO (STEP 6: Here we get the stored response from
-        //  SharedPreferences and again convert back to data object
-        //  to populate the data in the UI.)
-        // START
-        // Here we have got the latest stored response from the SharedPreference and converted back to the data model object.
-        val weatherResponseJsonString =
-            mSharedPreferences.getString(Constants.WEATHER_RESPONSE_DATA, "")
-
-        if (!weatherResponseJsonString.isNullOrEmpty()) {
-
-            val weatherList =
-                Gson().fromJson(weatherResponseJsonString, WeatherResponse::class.java)
-
-
-
-            // For loop to get the required data. And all are populated in the UI.
-            for (z in weatherList.weather.indices) {
-                Log.i("NAMEEEEEEEE", weatherList.weather[z].main)
-
-                tv_main.text = weatherList.weather[z].main
-                tv_main_description.text = weatherList.weather[z].description
-                tv_temp.text =
-                    weatherList.main.temp.toString() + getUnit(application.resources.configuration.locales.toString())
-                tv_humidity.text = weatherList.main.humidity.toString() + " per cent"
-                tv_min.text = weatherList.main.tempMin.toString() + " min"
-                tv_max.text = weatherList.main.tempMax.toString() + " max"
-                tv_speed.text = weatherList.wind.speed.toString()
-                tv_name.text = weatherList.name
-                tv_country.text = weatherList.sys.country
-                tv_sunrise_time.text = unixTime(weatherList.sys.sunrise.toLong())
-                tv_sunset_time.text = unixTime(weatherList.sys.sunset.toLong())
-
-                // Here we update the main icon
-                when (weatherList.weather[z].icon) {
-                    "01d" -> iv_main.setImageResource(R.drawable.sunny)
-                    "02d" -> iv_main.setImageResource(R.drawable.cloud)
-                    "03d" -> iv_main.setImageResource(R.drawable.cloud)
-                    "04d" -> iv_main.setImageResource(R.drawable.cloud)
-                    "04n" -> iv_main.setImageResource(R.drawable.cloud)
-                    "10d" -> iv_main.setImageResource(R.drawable.rain)
-                    "11d" -> iv_main.setImageResource(R.drawable.storm)
-                    "13d" -> iv_main.setImageResource(R.drawable.snowflake)
-                    "01n" -> iv_main.setImageResource(R.drawable.cloud)
-                    "02n" -> iv_main.setImageResource(R.drawable.cloud)
-                    "03n" -> iv_main.setImageResource(R.drawable.cloud)
-                    "10n" -> iv_main.setImageResource(R.drawable.cloud)
-                    "11n" -> iv_main.setImageResource(R.drawable.rain)
-                    "13n" -> iv_main.setImageResource(R.drawable.snowflake)
-                }
-            }
-        }
-        // END
-    }
-
     /**
      * Function is used to get the temperature unit value.
      */

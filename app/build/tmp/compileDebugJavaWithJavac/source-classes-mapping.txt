@@ -1,5 +1,13 @@
 com/weatherapp/BuildConfig.java
  com.weatherapp.BuildConfig
+com/weatherapp/di/NetworkModule_ProvideRetrofitFactory.java
+ com.weatherapp.di.NetworkModule_ProvideRetrofitFactory
+com/weatherapp/activities/WeatherViewModel_Factory.java
+ com.weatherapp.activities.WeatherViewModel_Factory
+com/weatherapp/activities/WeatherViewModelFactory_Factory.java
+ com.weatherapp.activities.WeatherViewModelFactory_Factory
+com/weatherapp/activities/MainActivity_MembersInjector.java
+ com.weatherapp.activities.MainActivity_MembersInjector
 com/weatherapp/di/DaggerAppComponent.java
  com.weatherapp.di.DaggerAppComponent
  com.weatherapp.di.DaggerAppComponent$1

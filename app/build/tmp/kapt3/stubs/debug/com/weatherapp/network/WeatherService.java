@@ -1,6 +1,15 @@
 package com.weatherapp.network;
 
-import java.lang.System;
+import android.annotation.SuppressLint;
+import android.os.Build;
+import android.util.Log;
+import androidx.annotation.RequiresApi;
+import com.google.gson.Gson;
+import com.weatherapp.models.WeatherResponse;
+import com.weatherapp.utils.Constants;
+import io.reactivex.Observable;
+import retrofit2.http.GET;
+import retrofit2.http.Query;
 
 /**
  * An Interface which defines the HTTP operations Functions.
@@ -9,12 +18,12 @@ import java.lang.System;
 public abstract interface WeatherService {
     
     @org.jetbrains.annotations.NotNull()
-    @retrofit.http.GET(value = "2.5/weather")
-    public abstract io.reactivex.Observable<com.weatherapp.models.WeatherResponse> getWeather(@retrofit.http.Query(value = "lat")
-    double lat, @retrofit.http.Query(value = "lon")
+    @retrofit2.http.GET(value = "2.5/weather")
+    public abstract io.reactivex.Observable<com.weatherapp.models.WeatherResponse> getWeather(@retrofit2.http.Query(value = "lat")
+    double lat, @retrofit2.http.Query(value = "lon")
     double lon, @org.jetbrains.annotations.Nullable()
-    @retrofit.http.Query(value = "units")
+    @retrofit2.http.Query(value = "units")
     java.lang.String units, @org.jetbrains.annotations.Nullable()
-    @retrofit.http.Query(value = "appid")
+    @retrofit2.http.Query(value = "appid")
     java.lang.String appid);
 }

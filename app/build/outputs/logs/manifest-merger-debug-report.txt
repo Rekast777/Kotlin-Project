@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\regan\Downloads\WeatherApp_v8\WeatherApp_v8\app\src\main\AndroidManifest.xml:2:1-34:12
-INJECTED from C:\Users\regan\Downloads\WeatherApp_v8\WeatherApp_v8\app\src\main\AndroidManifest.xml:2:1-34:12
-INJECTED from C:\Users\regan\Downloads\WeatherApp_v8\WeatherApp_v8\app\src\main\AndroidManifest.xml:2:1-34:12
-INJECTED from C:\Users\regan\Downloads\WeatherApp_v8\WeatherApp_v8\app\src\main\AndroidManifest.xml:2:1-34:12
+ADDED from C:\Users\regan\Downloads\WeatherApp_v8\WeatherApp_v8\app\src\main\AndroidManifest.xml:2:1-37:12
+INJECTED from C:\Users\regan\Downloads\WeatherApp_v8\WeatherApp_v8\app\src\main\AndroidManifest.xml:2:1-37:12
+INJECTED from C:\Users\regan\Downloads\WeatherApp_v8\WeatherApp_v8\app\src\main\AndroidManifest.xml:2:1-37:12
+INJECTED from C:\Users\regan\Downloads\WeatherApp_v8\WeatherApp_v8\app\src\main\AndroidManifest.xml:2:1-37:12
 MERGED from [androidx.core:core-ktx:1.2.0] C:\Users\regan\.gradle\caches\transforms-2\files-2.1\dd737f1cfebb28cb291ab8bad2c1aae2\jetified-core-ktx-1.2.0\AndroidManifest.xml:2:1-9:12
 MERGED from [com.karumi:dexter:6.0.1] C:\Users\regan\.gradle\caches\transforms-2\files-2.1\e807e5b0707e0b889f240d287491c121\jetified-dexter-6.0.1\AndroidManifest.xml:17:1-32:12
 MERGED from [com.google.android.material:material:1.1.0] C:\Users\regan\.gradle\caches\transforms-2\files-2.1\1d90cd8f4900107f057abb787f3d5130\material-1.1.0\AndroidManifest.xml:17:1-24:12
@@ -49,20 +49,20 @@ MERGED from [androidx.tracing:tracing:1.0.0] C:\Users\regan\.gradle\caches\trans
 MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\regan\.gradle\caches\transforms-2\files-2.1\29d820506409cfa38b75a3337969ce53\interpolator-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [com.google.dagger:dagger-lint-aar:2.40] C:\Users\regan\.gradle\caches\transforms-2\files-2.1\68f847f9245792c58691ec3119e13d49\jetified-dagger-lint-aar-2.40\AndroidManifest.xml:16:1-19:12
 MERGED from [androidx.annotation:annotation-experimental:1.0.0] C:\Users\regan\.gradle\caches\transforms-2\files-2.1\baa17257aefd75970d3ac2c84146bf83\jetified-annotation-experimental-1.0.0\AndroidManifest.xml:17:1-24:12
-INJECTED from C:\Users\regan\Downloads\WeatherApp_v8\WeatherApp_v8\app\src\main\AndroidManifest.xml:2:1-34:12
-INJECTED from C:\Users\regan\Downloads\WeatherApp_v8\WeatherApp_v8\app\src\main\AndroidManifest.xml:2:1-34:12
-INJECTED from C:\Users\regan\Downloads\WeatherApp_v8\WeatherApp_v8\app\src\main\AndroidManifest.xml:2:1-34:12
+INJECTED from C:\Users\regan\Downloads\WeatherApp_v8\WeatherApp_v8\app\src\main\AndroidManifest.xml:2:1-37:12
+INJECTED from C:\Users\regan\Downloads\WeatherApp_v8\WeatherApp_v8\app\src\main\AndroidManifest.xml:2:1-37:12
+INJECTED from C:\Users\regan\Downloads\WeatherApp_v8\WeatherApp_v8\app\src\main\AndroidManifest.xml:2:1-37:12
 	package
 		ADDED from C:\Users\regan\Downloads\WeatherApp_v8\WeatherApp_v8\app\src\main\AndroidManifest.xml:3:5-29
 		INJECTED from C:\Users\regan\Downloads\WeatherApp_v8\WeatherApp_v8\app\src\main\AndroidManifest.xml
 		INJECTED from C:\Users\regan\Downloads\WeatherApp_v8\WeatherApp_v8\app\src\main\AndroidManifest.xml
 	android:versionName
 		INJECTED from C:\Users\regan\Downloads\WeatherApp_v8\WeatherApp_v8\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\regan\Downloads\WeatherApp_v8\WeatherApp_v8\app\src\main\AndroidManifest.xml:2:1-34:12
+		ADDED from C:\Users\regan\Downloads\WeatherApp_v8\WeatherApp_v8\app\src\main\AndroidManifest.xml:2:1-37:12
 		INJECTED from C:\Users\regan\Downloads\WeatherApp_v8\WeatherApp_v8\app\src\main\AndroidManifest.xml
 	android:versionCode
 		INJECTED from C:\Users\regan\Downloads\WeatherApp_v8\WeatherApp_v8\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\regan\Downloads\WeatherApp_v8\WeatherApp_v8\app\src\main\AndroidManifest.xml:2:1-34:12
+		ADDED from C:\Users\regan\Downloads\WeatherApp_v8\WeatherApp_v8\app\src\main\AndroidManifest.xml:2:1-37:12
 		INJECTED from C:\Users\regan\Downloads\WeatherApp_v8\WeatherApp_v8\app\src\main\AndroidManifest.xml
 	xmlns:android
 		ADDED from C:\Users\regan\Downloads\WeatherApp_v8\WeatherApp_v8\app\src\main\AndroidManifest.xml:2:11-69
@@ -87,7 +87,7 @@ ADDED from C:\Users\regan\Downloads\WeatherApp_v8\WeatherApp_v8\app\src\main\And
 	android:name
 		ADDED from C:\Users\regan\Downloads\WeatherApp_v8\WeatherApp_v8\app\src\main\AndroidManifest.xml:12:22-78
 application
-ADDED from C:\Users\regan\Downloads\WeatherApp_v8\WeatherApp_v8\app\src\main\AndroidManifest.xml:14:5-32:19
+ADDED from C:\Users\regan\Downloads\WeatherApp_v8\WeatherApp_v8\app\src\main\AndroidManifest.xml:14:5-35:19
 MERGED from [com.karumi:dexter:6.0.1] C:\Users\regan\.gradle\caches\transforms-2\files-2.1\e807e5b0707e0b889f240d287491c121\jetified-dexter-6.0.1\AndroidManifest.xml:26:5-30:19
 MERGED from [com.karumi:dexter:6.0.1] C:\Users\regan\.gradle\caches\transforms-2\files-2.1\e807e5b0707e0b889f240d287491c121\jetified-dexter-6.0.1\AndroidManifest.xml:26:5-30:19
 MERGED from [com.google.android.material:material:1.1.0] C:\Users\regan\.gradle\caches\transforms-2\files-2.1\1d90cd8f4900107f057abb787f3d5130\material-1.1.0\AndroidManifest.xml:22:5-20
@@ -115,33 +115,35 @@ MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\re
 	android:appComponentFactory
 		ADDED from [androidx.core:core:1.5.0] C:\Users\regan\.gradle\caches\transforms-2\files-2.1\84b6706a8c170208231d42ac7c0486a1\core-1.5.0\AndroidManifest.xml:24:18-86
 	android:supportsRtl
-		ADDED from C:\Users\regan\Downloads\WeatherApp_v8\WeatherApp_v8\app\src\main\AndroidManifest.xml:19:9-35
+		ADDED from C:\Users\regan\Downloads\WeatherApp_v8\WeatherApp_v8\app\src\main\AndroidManifest.xml:20:9-35
 	android:label
-		ADDED from C:\Users\regan\Downloads\WeatherApp_v8\WeatherApp_v8\app\src\main\AndroidManifest.xml:17:9-41
+		ADDED from C:\Users\regan\Downloads\WeatherApp_v8\WeatherApp_v8\app\src\main\AndroidManifest.xml:18:9-41
 	android:roundIcon
-		ADDED from C:\Users\regan\Downloads\WeatherApp_v8\WeatherApp_v8\app\src\main\AndroidManifest.xml:18:9-54
+		ADDED from C:\Users\regan\Downloads\WeatherApp_v8\WeatherApp_v8\app\src\main\AndroidManifest.xml:19:9-54
 	android:icon
-		ADDED from C:\Users\regan\Downloads\WeatherApp_v8\WeatherApp_v8\app\src\main\AndroidManifest.xml:16:9-43
+		ADDED from C:\Users\regan\Downloads\WeatherApp_v8\WeatherApp_v8\app\src\main\AndroidManifest.xml:17:9-43
 	android:allowBackup
-		ADDED from C:\Users\regan\Downloads\WeatherApp_v8\WeatherApp_v8\app\src\main\AndroidManifest.xml:15:9-35
+		ADDED from C:\Users\regan\Downloads\WeatherApp_v8\WeatherApp_v8\app\src\main\AndroidManifest.xml:16:9-35
 	android:theme
-		ADDED from C:\Users\regan\Downloads\WeatherApp_v8\WeatherApp_v8\app\src\main\AndroidManifest.xml:20:9-40
+		ADDED from C:\Users\regan\Downloads\WeatherApp_v8\WeatherApp_v8\app\src\main\AndroidManifest.xml:21:9-40
+	android:name
+		ADDED from C:\Users\regan\Downloads\WeatherApp_v8\WeatherApp_v8\app\src\main\AndroidManifest.xml:15:9-38
 activity#com.weatherapp.activities.MainActivity
-ADDED from C:\Users\regan\Downloads\WeatherApp_v8\WeatherApp_v8\app\src\main\AndroidManifest.xml:22:9-30:20
-	android:screenOrientation
-		ADDED from C:\Users\regan\Downloads\WeatherApp_v8\WeatherApp_v8\app\src\main\AndroidManifest.xml:24:13-49
+ADDED from C:\Users\regan\Downloads\WeatherApp_v8\WeatherApp_v8\app\src\main\AndroidManifest.xml:24:9-33:20
+	android:exported
+		ADDED from C:\Users\regan\Downloads\WeatherApp_v8\WeatherApp_v8\app\src\main\AndroidManifest.xml:27:13-36
 	android:name
-		ADDED from C:\Users\regan\Downloads\WeatherApp_v8\WeatherApp_v8\app\src\main\AndroidManifest.xml:23:13-52
+		ADDED from C:\Users\regan\Downloads\WeatherApp_v8\WeatherApp_v8\app\src\main\AndroidManifest.xml:25:13-52
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from C:\Users\regan\Downloads\WeatherApp_v8\WeatherApp_v8\app\src\main\AndroidManifest.xml:25:13-29:29
+ADDED from C:\Users\regan\Downloads\WeatherApp_v8\WeatherApp_v8\app\src\main\AndroidManifest.xml:28:13-32:29
 action#android.intent.action.MAIN
-ADDED from C:\Users\regan\Downloads\WeatherApp_v8\WeatherApp_v8\app\src\main\AndroidManifest.xml:26:17-69
+ADDED from C:\Users\regan\Downloads\WeatherApp_v8\WeatherApp_v8\app\src\main\AndroidManifest.xml:29:17-69
 	android:name
-		ADDED from C:\Users\regan\Downloads\WeatherApp_v8\WeatherApp_v8\app\src\main\AndroidManifest.xml:26:25-66
+		ADDED from C:\Users\regan\Downloads\WeatherApp_v8\WeatherApp_v8\app\src\main\AndroidManifest.xml:29:25-66
 category#android.intent.category.LAUNCHER
-ADDED from C:\Users\regan\Downloads\WeatherApp_v8\WeatherApp_v8\app\src\main\AndroidManifest.xml:28:17-77
+ADDED from C:\Users\regan\Downloads\WeatherApp_v8\WeatherApp_v8\app\src\main\AndroidManifest.xml:31:17-77
 	android:name
-		ADDED from C:\Users\regan\Downloads\WeatherApp_v8\WeatherApp_v8\app\src\main\AndroidManifest.xml:28:27-74
+		ADDED from C:\Users\regan\Downloads\WeatherApp_v8\WeatherApp_v8\app\src\main\AndroidManifest.xml:31:27-74
 uses-sdk
 INJECTED from C:\Users\regan\Downloads\WeatherApp_v8\WeatherApp_v8\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\Users\regan\Downloads\WeatherApp_v8\WeatherApp_v8\app\src\main\AndroidManifest.xml
